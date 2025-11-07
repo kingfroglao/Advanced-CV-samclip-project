@@ -29,7 +29,6 @@ This project explores two pipelines that combine natural language with SAM’s s
 
 ```bash
 git clone [your-repo-URL]
-cd language-guided-sam
 ```
 
 ### 2) Create and activate a Python virtual environment (recommended)
@@ -73,10 +72,9 @@ transformers
 
 This project uses the following datasets for evaluation:
 
-- **RefCOCO / RefCOCO+ / RefCOCOg** — benchmarks for referring expression segmentation.  
-- **PhraseCut** — a large-scale dataset for phrase-based segmentation.
+- **RefCOCO** — benchmarks for referring expression segmentation.  
 
-Place downloaded datasets under the `data/` directory, or modify paths in `src/dataloaders.py` accordingly.
+Modify paths in `src/dataloaders.py` accordingly.
 
 ---
 
@@ -88,12 +86,12 @@ Test a single image using the demo script.
 
 **Method 1: CLIP Ranking**
 ```bash
-python scripts/run_demo.py   --image_path "path/to/your/image.jpg"   --text_prompt "a black dog on the grass"   --method "clip_ranking"   --output_path "path/to/output/mask.png"
+python scr/eval.py 
 ```
 
 **Method 2: Grounding DINO Seeding**
 ```bash
-python scripts/run_demo.py   --image_path "path/to/your/image.jpg"   --text_prompt "a black dog on the grass"   --method "dino_seeding"   --output_path "path/to/output/mask.png"
+python scr/eval_dg.py
 ```
 
 ---
@@ -103,14 +101,9 @@ python scripts/run_demo.py   --image_path "path/to/your/image.jpg"   --text_prom
 Compute metrics such as **mIoU** and **Success@IoU** on standard datasets (e.g., RefCOCO validation split).
 
 **Evaluate CLIP Ranking**
-```bash
-python scripts/evaluate.py   --dataset "refcoco"   --dataset_split "val"   --method "clip_ranking"
-```
+
 
 **Evaluate Grounding DINO Seeding**
-```bash
-python scripts/evaluate.py   --dataset "refcoco"   --dataset_split "val"   --method "dino_seeding"
-```
 
 ---
 
@@ -126,8 +119,6 @@ project-root/
 │   ├── models.py         # Wrappers for SAM, CLIP, Grounding DINO
 │   ├── pipeline.py       # Implementations of the two segmentation pipelines
 │   └── utils.py          # Utilities (IoU, visualization, etc.)
-│
-├── scripts/              # Executable scripts
 │   ├── evaluate.py       # Evaluation script
 │   └── run_demo.py       # Demo script
 │
