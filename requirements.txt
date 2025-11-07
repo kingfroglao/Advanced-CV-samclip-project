@@ -1,0 +1,14 @@
+torch
+torchvision
+numpy
+opencv-python-headless
+matplotlib
+tqdm
+#datasets
+#Pillow
+# SAM
+#segment-anything
+# CLIP
+#git+https://github.com/openai/CLIP.git
+# Grounding DINO
+# git+https://github.com/IDEA-Research/GroundingDINO.git
